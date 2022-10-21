@@ -12,11 +12,12 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-public class Board {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class Board { // java로 테이블 생성하는 것
+    @Id // pk
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // auto-increament
     private Long id;
     private String title;
-    @Column(length = 1000)
+    @Column(length = 1000) // 데이터의 크기가 1000자인 열
     private String content;
+    private String author;
 }
