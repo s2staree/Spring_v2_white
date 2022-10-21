@@ -10,6 +10,8 @@ import site.metacoding.white.domain.Board;
 import site.metacoding.white.domain.BoardRepository;
 
 // 서비스의 역할: 트랜잭션 관리
+// DTO 변환해서 컨트롤러에게 돌려줘야함
+
 @RequiredArgsConstructor // 이거 없으면 디폴트생성자
 @Service // 이거 안붙이면 IoC(메모리)에 안뜸
 public class BoardService {
