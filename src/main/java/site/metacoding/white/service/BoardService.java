@@ -22,6 +22,22 @@ public class BoardService {
     }
 
     public Board findById(Long id) {
-        return boardRepository.findById(id);
+        return boardRepository.findById(id); // select 할거여서 transaction이 필요없음
     }
+
+    @Transactional
+    public void update(Long id, Board board) {
+
+        // boardPS 영속화됨
+        Board boardPS = boardRepository.findById(id);
+
+        // 영속화된 데이터 수정하기
+        boardPS.setTitle(board.getTitle());
+        boardPS.setContent(board.getContent());
+        boardPS.setAuthor(board.getAuthor()); // 영속화 된 데이터를 클라이언트에게 입력받은 데이터로 수정함
+
+    }
+    // 트랜잭션 종료시 자동으로 flush => 여기서 코드 끝, 만약 id가 없으면 insert
+    // 트랜잭션 종료시 -> 더티체킹을 함 (실패한 데이터를 모았다가 한방에 flush ex. 가비지컬렉션)
+
 }
