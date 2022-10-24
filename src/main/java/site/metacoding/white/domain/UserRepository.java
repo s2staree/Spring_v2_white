@@ -21,25 +21,10 @@ public class UserRepository {
         em.persist(user); // insert 됨 (쿼리가 자동으로 돌아감) // persist 뜻: 영속화
     }
 
-    public Board findById(Long id) {
-        // JPQL 문법
-        Board boardPS = em.createQuery("select b from Board b where b.id = :id", Board.class)
-                // 간단한 쿼리작성시 사용, 복잡한 join같은건 native 쿼리 사용 -> 엔티티 조회쿼리(jpql)
-                .setParameter("id", id) // mapping되는거 걸기
-                .getSingleResult(); // 한 건 받을거니까 single result
-        return boardPS;
+    public User findByUsername(String username) {
+        return em.createQuery("select u from User u where u.username = :username", User.class)
+                .setParameter("username", username)
+                .getSingleResult();
     }
 
-    public List<Board> findAll() {
-        // JPQL 문법
-        List<Board> boardList = em.createQuery("select b from Board b", Board.class)
-                .getResultList();
-        return boardList;
-    }
-
-    public void deleteById(Long id) {
-        em.createQuery("delete b from Board b where b.id = :id")
-                .setParameter("id", id)
-                .executeUpdate();
-    }
 }

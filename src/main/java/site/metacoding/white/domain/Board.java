@@ -8,7 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import antlr.collections.List;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,10 +21,8 @@ public class Board { // java로 테이블 생성하는 것
     private String title;
     @Column(length = 1000) // 데이터의 크기가 1000자인 열
     private String content;
-    private String author;
 
     // FK가 만들어짐. user_id
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
-
 }
